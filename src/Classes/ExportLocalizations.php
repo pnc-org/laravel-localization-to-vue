@@ -192,7 +192,7 @@ class ExportLocalizations implements \JsonSerializable
         $default_locale = config('laravel-localization.js.default_locale');
         $default_json_strings = null;
 
-        foreach ($this->strings as $lang => $strings) {
+        foreach ((array) $this->strings as $lang => $strings) {
             if ($lang !== 'json') {
                 foreach ($strings as $lang_array => $lang_messages) {
                     $key = $lang.$prefix.$lang_array;
