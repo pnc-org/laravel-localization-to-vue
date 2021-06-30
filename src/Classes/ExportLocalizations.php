@@ -254,8 +254,8 @@ class ExportLocalizations implements \JsonSerializable
         $fileContents = require $dir.DIRECTORY_SEPARATOR.$file;
 
         // Check if language already exists in array
-        if (array_key_exists($language, $this->strings)) {
-            if (array_key_exists($packageName, $this->strings[$language])) {
+        if (array_key_exists($language, (array) $this->strings)) {
+            if (array_key_exists($packageName, (array) $this->strings[$language])) {
                 $this->strings[$language][$packageName] =
                     array_replace_recursive((array) $this->strings[$language][$packageName], (array)
                     $fileContents);
@@ -286,10 +286,10 @@ class ExportLocalizations implements \JsonSerializable
         $fileContents = require $dir.DIRECTORY_SEPARATOR.$file;
 
         // Check if language already exists in array
-        if (array_key_exists($language, $this->strings)) {
+        if (array_key_exists($language, (array) $this->strings)) {
             // Check if package already exists in language
-            if (array_key_exists($package, $this->strings[$language])) {
-                if (array_key_exists($packageName, $this->strings[$language][$package])) {
+            if (array_key_exists($package, (array) $this->strings[$language])) {
+                if (array_key_exists($packageName, (array) $this->strings[$language][$package])) {
                     $this->strings[$language][$package][$packageName] =
                         array_replace_recursive((array) $this->strings[$language][$package][$packageName],
                             (array)
@@ -321,8 +321,8 @@ class ExportLocalizations implements \JsonSerializable
         $fileContents = json_decode(file_get_contents($dir.$file));
 
         // Check if language already exists in array
-        if (array_key_exists('json', $this->strings)) {
-            if (array_key_exists($language, $this->strings['json'])) {
+        if (array_key_exists('json', (array) $this->strings)) {
+            if (array_key_exists($language, (array) $this->strings['json'])) {
                 $this->strings['json'][$language] =
                     array_replace_recursive((array) $this->strings['json'][$language], (array) $fileContents);
             } else {
