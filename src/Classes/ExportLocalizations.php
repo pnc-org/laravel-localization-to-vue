@@ -66,7 +66,6 @@ class ExportLocalizations implements \JsonSerializable
 
         foreach (config('laravel-localization.paths.lang_dirs') as $dir) {
             try {
-
                 // Collect language files and build array with translations
                 $files = $this->findLanguageFiles($dir);
 
@@ -150,9 +149,9 @@ class ExportLocalizations implements \JsonSerializable
         });
 
         return [
-            'lang'   => array_values($nonVendorFiles),
+            'lang' => array_values($nonVendorFiles),
             'vendor' => array_values($vendorFiles),
-            'json'   => array_values($jsonFiles),
+            'json' => array_values($jsonFiles),
         ];
     }
 
@@ -161,7 +160,7 @@ class ExportLocalizations implements \JsonSerializable
      *
      * @return array
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return self::executeCallback($this->strings);
     }
