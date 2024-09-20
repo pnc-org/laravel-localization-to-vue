@@ -215,9 +215,15 @@ class ExportLocalizations implements \JsonSerializable
         // Create a JSON key value pair for the default language
         $default_key = $default_locale.$prefix.'__JSON__';
         if (! array_key_exists($default_key, $results)) {
-            $buffer = array_keys(
-                $default_json_strings ? get_object_vars($default_json_strings) : []
-            );
+            $buffer = array_keys([]);
+
+            if ($default_json_strings && is_array($default_json_strings)) {
+                $buffer = array_keys($default_json_strings);
+            }
+
+            if ($default_json_strings && !is_array($default_json_strings)) {
+                $buffer = array_keys(get_object_vars($default_json_strings));
+            }
 
             $results[$default_key] = array_combine($buffer, $buffer);
         }
